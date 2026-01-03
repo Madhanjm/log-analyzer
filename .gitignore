@@ -1,0 +1,13 @@
+# Virtual Environment
+log/
+env/
+
+# Python cache
+_pycache_/
+*.pyc
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
