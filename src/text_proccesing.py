@@ -1,3 +1,4 @@
+import re
 def text_analysis(input="log.txt",output="summary_log.txt"):
     ip=[]
     warning_log=0
@@ -34,6 +35,17 @@ def text_analysis(input="log.txt",output="summary_log.txt"):
             f.write(i + "\n")
             
             
-text_analysis()
-        
             
+def match_ip_errcode():
+    with open("log.txt","r") as f,open("ip_errcode_match_regex.txt","w") as match:
+        for line in f:
+            ip=re.search(r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}",line)
+            err_code=re.search(r"[45]\d{2}",line)
+            
+            if ip:
+                match.write(f"IP : {ip.group()}\n")
+            if err_code:
+                match.write(f"HTTP ERROR CODE : {err_code.group()}\n")
+                
+match_ip_errcode()
+                
